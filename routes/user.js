@@ -29,10 +29,14 @@ router.get("/auth/google", passport.authenticate("google", {
 
 // 2. Google Callback
 router.get("/auth/google/callback",
-    passport.authenticate("google", { failureRedirect: "/login" }),
+    passport.authenticate("google", { failureRedirect: "/login", failureFlash: true }),
     (req, res) => {
-        req.flash("success", "Welcome to wanderlust!");
-        res.redirect("/listings");
+        req.flash("success", "Welcome Back! " + req.user.username.toUpperCase());
+        // Explicitly save session before redirecting
+        req.session.save((err) => {
+            if (err) return next(err);
+            return res.redirect("/listings");
+        });
     }
 );
 

@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV != "production") {
-  require('dotenv').config()
-}
+require('dotenv').config()
 
 const express = require("express");
 const path = require("path");
@@ -65,7 +63,9 @@ const sessionOption = {
   cookie: {
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: true
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
   },
 }
 
