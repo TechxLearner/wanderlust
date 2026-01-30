@@ -47,6 +47,9 @@ async function main() {
 
 const store = MongoStore.create({
   mongoUrl: MONGO_URL,
+  cripto: {
+    secret: "MybestSecretOptionKey",
+  },
   touchAfter: 24 * 3600,
 });
 

@@ -1,4 +1,6 @@
 const User = require("../models/user.js");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const passportConfig = require("../config/passport.js");
 
 module.exports.signUpForm = (req, res) => {
     res.render("users/singup.ejs");
