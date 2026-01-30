@@ -22,7 +22,7 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
