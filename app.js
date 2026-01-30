@@ -47,11 +47,6 @@ async function main() {
 
 const store = MongoStore.create({
   mongoUrl: MONGO_URL,
-  // connect-mongo encryption is optional; if enabled, the secret must be very complex.
-  // Leave SESSION_CRYPTO_SECRET unset to keep sessions unencrypted in MongoDB.
-  crypto: {
-    secret: process.env.SESSION_CRYPTO_SECRET || false,
-  },
   touchAfter: 24 * 3600,
 });
 
